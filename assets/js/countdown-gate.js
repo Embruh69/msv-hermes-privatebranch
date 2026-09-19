@@ -17,7 +17,7 @@
 (function () {
   'use strict';
 
-  var TARGET = window.COUNTDOWN_TARGET;
+  var TARGET = new Date('2026-09-19T13:08:00+07:00');
 
   var FONT = {
     '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'],

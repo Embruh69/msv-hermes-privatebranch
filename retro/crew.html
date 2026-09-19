@@ -1,0 +1,107 @@
+---
+permalink: /retro/crew.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Crew :: PASSENGER</title>
+<link rel="stylesheet" href="{{ "/assets/css/retro.css" | relative_url }}">
+<link rel="stylesheet" href="{{ "/assets/css/retro-easter-egg.css" | relative_url }}">
+</head>
+<body>
+
+<div id="glitch-overlay" aria-hidden="true"></div>
+
+<div class="page">
+
+  <div class="banner">
+    <span class="kicker">:: PRS COLONIAL PLACEMENT DIVISION ::</span>
+    <h1>★ OUR CREW ★</h1>
+    <span class="tag">The Crew Behind Your Voyage</span>
+  </div>
+
+  <marquee behavior="alternate" scrollamount="4">☺︎ THE CREW STANDS WATCH OVER THE HERMES ☺︎ MEET THE CREW GETTING YOU TO PROXIMA ☺︎</marquee>
+
+  <table class="layout-table" cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="nav-col">
+        {% include retro-nav.html %}
+      </td>
+      <td class="content-col">
+
+        <h2>MEET THE CREW</h2>
+        <table class="crew-table" cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+              <div class="crew-portrait"><img src="{{ "assets/images/cpted-profile.png" | relative_url }}" alt="Sir Ed Sheeran"></div>
+              <b>Sir Ed Sheeran</b>
+              <span class="handle">@secrethandler</span>
+              <span class="role">Captain, MSV Hermes</span>
+              <p>Chosen to go first.</p>
+            </td>
+            <td>
+              <div class="crew-portrait"><img src="{{ "assets/images/harry-new.png" | relative_url }}" alt="Harry Styles"></div>
+              <b>Harry Styles</b>
+              <span class="handle">@ember_ce</span>
+              <span class="role">First Mate</span>
+              <p>Steady hands, steady course.</p>
+            </td>
+            <td>
+              <div class="crew-portrait"><img src="{{ "assets/images/louis-new.png" | relative_url }}" alt="Louis Tomlinson"></div>
+              <b>Louis Tomlinson</b>
+              <span class="handle">@hiuputihbesar</span>
+              <span class="role">Quartermaster</span>
+              <p>Keeps the manifest in order.</p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="crew-portrait"><img src="{{ "assets/images/niall-profile.png" | relative_url }}" alt="Niall Horan"></div>
+              <b>Niall Horan</b>
+              <span class="handle">@lycorice_</span>
+              <span class="role">Ship's Surgeon</span>
+              <p>On call, day or night.</p>
+            </td>
+            <td>
+              <div class="crew-portrait"><img src="{{ "assets/images/zayn-profile.png" | relative_url }}" alt="Zayn Malik"></div>
+              <b>Zayn Malik</b>
+              <span class="handle">@krolonks</span>
+              <span class="role">Purser</span>
+              <p>Matches you to your new life.</p>
+            </td>
+            <td id="adam-cell">
+              <div class="crew-portrait"><img src="{{ "assets/images/hal-profile.jpg" | relative_url }}" alt="A.D.A.M."></div>
+              <b>A.D.A.M.</b>
+              <span class="handle">@dewantr</span>
+              <span class="role">Caretaker</span>
+              <p>Watches while you sleep.</p>
+            </td>
+          </tr>
+          <tr id="mystery-row" class="hidden-crew">
+            <td colspan="3" class="mystery-cell">
+              <div class="crew-portrait mystery-portrait"><img src="{{ "assets/images/paras.png" | relative_url }}" alt="@Paras_Permata"></div>
+              <b>Paras</b>
+              <span class="role">@paras_permata</span>
+              <p>Follow di IG guys.</p>
+            </td>
+          </tr>
+        </table>
+
+        <p style="text-align:center; margin-top:16px;">
+          <a href="{{ "/retro/player-guide.html" | relative_url }}" class="btn-retro">&lt;&lt; OPEN ENROLLMENT</a>
+          &nbsp;&nbsp;
+          <a href="{{ "/retro/mission.html" | relative_url }}" class="btn-retro">OUR MISSION &gt;&gt;</a>
+        </p>
+
+        {% include retro-footer.html %}
+      </td>
+    </tr>
+  </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="{{ "/assets/js/mgGlitch.min.js" | relative_url }}"></script>
+<script src="{{ "/assets/js/adam-easter-egg.js" | relative_url }}"></script>
+</body>
+</html>
