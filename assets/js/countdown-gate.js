@@ -3,22 +3,22 @@
    ---------------------------------------------------------------
    Ticks the #gate-overlay countdown clock (built the same way as
    the standalone countdown.html page) and, once the target time
-   passes, reveals the real page underneath by removing the
-   `gate-active` class from <html> — no reload needed.
+   passes, shows the ENTER SITE button. Clicking it reveals the real
+   page underneath by removing the `gate-active` class from <html>
+   (no reload needed).
 
    Pair with: _includes/gate-head.html (sets `gate-active` on <html>
-   before first paint if we're still before TARGET) and
+   before first paint if we're still before the target) and
    _includes/gate-overlay.html (the markup this script fills in).
 
-   NOTE: keep TARGET in sync with the date in
-   _includes/gate-head.html and assets/js/countdown.js.
+   The target time comes from window.COUNTDOWN_TARGET, which is set
+   in assets/js/countdown-target.js (the only place to edit it).
    ==================================================================== */
 
 (function () {
   'use strict';
 
-  var TARGET = new Date('2026-09-19T13:54:00+07:00');
-    window.COUNTDOWN_TARGET = TARGET;
+  var TARGET = window.COUNTDOWN_TARGET;
 
   var FONT = {
     '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'],
@@ -67,12 +67,17 @@
 
   function init() {
     var overlay = document.getElementById('gate-overlay');
-    if (!overlay) return;
+    if (!overlay || !TARGET) return;
 
     // If we're already past TARGET (e.g. a visitor loaded the page
     // after launch, so gate-head.html never added gate-active), there's
     // nothing to build or tick — leave the overlay untouched and hidden.
     if (!document.documentElement.classList.contains('gate-active')) return;
+
+    // Build the clock only once, even if this script ends up included
+    // (or init() called) twice; otherwise every digit slot gets doubled.
+    if (overlay.hasAttribute('data-clock-built')) return;
+    overlay.setAttribute('data-clock-built', '');
 
     var units = overlay.querySelectorAll('.clock-unit');
     var digitPairs = {};

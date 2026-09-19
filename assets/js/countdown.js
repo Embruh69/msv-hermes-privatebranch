@@ -1,20 +1,19 @@
 /* ====================================================================
    PASSENGER :: STANDALONE DEPARTURE COUNTDOWN (/countdown.html)
    ---------------------------------------------------------------
-   Builds the segmented digit clock and ticks it down to TARGET.
+   Builds the segmented digit clock and ticks it down to the target.
    Once the target time passes, reveals the "ENTER SITE" link.
 
    Pairs with: countdown.html, assets/css/countdown.css
 
-   NOTE: keep TARGET in sync with the date used in
-   assets/js/countdown-gate.js and _includes/gate-head.html.
+   The target time comes from window.COUNTDOWN_TARGET, which is set
+   in assets/js/countdown-target.js (the only place to edit it).
    ==================================================================== */
 
 (function () {
   'use strict';
 
-  var TARGET = new Date('2026-09-19T13:54:00+07:00');
-    window.COUNTDOWN_TARGET = TARGET;
+  var TARGET = window.COUNTDOWN_TARGET;
 
   var FONT = {
     '0': ['01110', '10001', '10011', '10101', '11001', '10001', '01110'],
@@ -63,7 +62,12 @@
 
   function init() {
     var clockEl = document.getElementById('clock');
-    if (!clockEl) return; // not on the countdown page — nothing to do
+    if (!clockEl || !TARGET) return; // not on the countdown page — nothing to do
+
+    // Build the clock only once, even if this script ends up included
+    // (or init() called) twice; otherwise every digit slot gets doubled.
+    if (clockEl.hasAttribute('data-clock-built')) return;
+    clockEl.setAttribute('data-clock-built', '');
 
     var units = clockEl.querySelectorAll('.clock-unit');
     var digitPairs = {};

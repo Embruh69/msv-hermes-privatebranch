@@ -25,9 +25,7 @@
      <script src="..." data-music="..." data-apollo="..." defer></script>
 
    Pair with: assets/css/countdown.css   (.sound-toggle styles)
-              window.COUNTDOWN_TARGET, which countdown-gate.js and
-              countdown.js set right after their own TARGET line (or
-              a shared countdown-target.js, if you use one)
+              assets/js/countdown-target.js (sets window.COUNTDOWN_TARGET)
               assets/audio/2001-theme.mp3, assets/audio/apollo-11-launch.mp3
    ==================================================================== */
 
@@ -78,10 +76,10 @@
       if (!host) return;
     }
 
-    // The countdown scripts publish the time they're counting to as
-    // window.COUNTDOWN_TARGET (countdown-gate.js / countdown.js). If it's
-    // missing we can't know the real target, so say so out loud instead of
-    // quietly cueing off the wrong time (the music still plays).
+    // The time the clock is counting to lives in assets/js/countdown-target.js
+    // (window.COUNTDOWN_TARGET). If it's missing we can't know the real
+    // target, so say so out loud instead of quietly cueing off the wrong
+    // time (the music still plays).
     var target = Infinity;
     if (window.COUNTDOWN_TARGET) {
       target = window.COUNTDOWN_TARGET.getTime();
@@ -89,7 +87,7 @@
                    '- Apollo cue at T-' + APOLLO_TRIGGER_SECONDS + 's');
     } else {
       console.warn('[countdown-audio] window.COUNTDOWN_TARGET is not set, so the Apollo cue is disabled. ' +
-                   'Add "window.COUNTDOWN_TARGET = TARGET;" under the TARGET line in countdown-gate.js / countdown.js.');
+                   'Make sure assets/js/countdown-target.js loads before this script.');
     }
     if (target - Date.now() <= 0) return; // already launched, nothing to score
 
