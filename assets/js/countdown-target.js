@@ -12,4 +12,4 @@
    from now. For the real launch, use the date shown here.
    ==================================================================== */
 
-window.COUNTDOWN_TARGET = new Date('2026-09-20T20:00:00+07:00');
+window.COUNTDOWN_TARGET = new Date('2026-09-19T15:22:00+07:00');
