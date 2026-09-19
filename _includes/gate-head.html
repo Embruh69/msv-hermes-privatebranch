@@ -1,8 +1,8 @@
+<script src="{{ "/assets/js/countdown-target.js" | relative_url }}"></script>
 <script>
   (function () {
     try {
-      var target = new Date('2026-09-20T20:00:00+07:00').getTime();
-      if (Date.now() < target) {
+      if (Date.now() < window.COUNTDOWN_TARGET.getTime()) {
         document.documentElement.classList.add('gate-active');
       }
     } catch (e) {}
