@@ -25,7 +25,9 @@
      <script src="..." data-music="..." data-apollo="..." defer></script>
 
    Pair with: assets/css/countdown.css   (.sound-toggle styles)
-              assets/js/countdown-target.js (window.COUNTDOWN_TARGET)
+              window.COUNTDOWN_TARGET, which countdown-gate.js and
+              countdown.js set right after their own TARGET line (or
+              a shared countdown-target.js, if you use one)
               assets/audio/2001-theme.mp3, assets/audio/apollo-11-launch.mp3
    ==================================================================== */
 
@@ -36,9 +38,9 @@
 
   var APOLLO_TRIGGER_SECONDS = 20;  // start the Apollo clip when this many seconds remain
   var APOLLO_CLIP_OFFSET = 0;       // ...beginning this many seconds into the clip
-  var MUSIC_VOLUME = 0.3;           // background music level (0-1)
+  var MUSIC_VOLUME = 0.6;           // background music level (0-1)
   var MUSIC_DUCKED_VOLUME = 0.15;   // music level while the Apollo clip plays
-  var APOLLO_VOLUME = 2;
+  var APOLLO_VOLUME = 1;
   var STORAGE_KEY = 'countdown-sound'; // sessionStorage: 'on' | 'off' (remembered per tab)
 
   var THIS_SCRIPT = document.currentScript;
@@ -76,7 +78,19 @@
       if (!host) return;
     }
 
-    var target = (window.COUNTDOWN_TARGET || new Date('2026-09-20T20:00:00+07:00')).getTime();
+    // The countdown scripts publish the time they're counting to as
+    // window.COUNTDOWN_TARGET (countdown-gate.js / countdown.js). If it's
+    // missing we can't know the real target, so say so out loud instead of
+    // quietly cueing off the wrong time (the music still plays).
+    var target = Infinity;
+    if (window.COUNTDOWN_TARGET) {
+      target = window.COUNTDOWN_TARGET.getTime();
+      console.info('[countdown-audio] counting to', new Date(target).toString(),
+                   '- Apollo cue at T-' + APOLLO_TRIGGER_SECONDS + 's');
+    } else {
+      console.warn('[countdown-audio] window.COUNTDOWN_TARGET is not set, so the Apollo cue is disabled. ' +
+                   'Add "window.COUNTDOWN_TARGET = TARGET;" under the TARGET line in countdown-gate.js / countdown.js.');
+    }
     if (target - Date.now() <= 0) return; // already launched, nothing to score
 
     var music = new Audio(MUSIC_SRC);
