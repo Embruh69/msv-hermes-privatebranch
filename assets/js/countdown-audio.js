@@ -36,9 +36,9 @@
 
   var APOLLO_TRIGGER_SECONDS = 20;  // start the Apollo clip when this many seconds remain
   var APOLLO_CLIP_OFFSET = 0;       // ...beginning this many seconds into the clip
-  var MUSIC_VOLUME = 0.6;           // background music level (0-1)
+  var MUSIC_VOLUME = 0.3;           // background music level (0-1)
   var MUSIC_DUCKED_VOLUME = 0.15;   // music level while the Apollo clip plays
-  var APOLLO_VOLUME = 1;
+  var APOLLO_VOLUME = 2;
   var STORAGE_KEY = 'countdown-sound'; // sessionStorage: 'on' | 'off' (remembered per tab)
 
   var THIS_SCRIPT = document.currentScript;
