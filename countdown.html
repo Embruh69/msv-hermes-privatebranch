@@ -1,0 +1,69 @@
+---
+title: Registration Countdown
+permalink: /countdown.html
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T-Minus :: PASSENGER</title>
+<meta name="description" content="Countdown to registration aboard the MSV Hermes.">
+<link rel="stylesheet" href="{{ "assets/css/passenger.css" | relative_url }}">
+<link rel="stylesheet" href="{{ "assets/css/countdown.css" | relative_url }}">
+</head>
+<body>
+
+<div class="countdown-page">
+
+  <div class="countdown-heading-block">
+    <span class="countdown-kicker">PRS COLONIAL PLACEMENT DIVISION</span>
+    <h1 class="countdown-heading">MSV HERMES</h1>
+    <span class="countdown-heading-sub">REGISTRATION COUNTDOWN</span>
+  </div>
+
+  <div class="clock" id="clock">
+    <div class="clock-body">
+
+      <div class="clock-unit" data-unit="days">
+        <div class="digit-slot"></div>
+        <div class="clock-label-strip"><span>DAY</span></div>
+      </div>
+
+      <div class="clock-divider"><span class="dot"></span><span class="dot"></span></div>
+
+      <div class="clock-unit" data-unit="hours">
+        <div class="digit-slot"></div>
+        <div class="clock-label-strip"><span>HOUR</span></div>
+      </div>
+
+      <div class="clock-divider"><span class="dot"></span><span class="dot"></span></div>
+
+      <div class="clock-unit" data-unit="minutes">
+        <div class="digit-slot"></div>
+        <div class="clock-label-strip"><span>MINUTE</span></div>
+      </div>
+
+      <div class="clock-divider"><span class="dot"></span><span class="dot"></span></div>
+
+      <div class="clock-unit" data-unit="seconds">
+        <div class="digit-slot"></div>
+        <div class="clock-label-strip"><span>SECOND</span></div>
+      </div>
+
+    </div>
+    <div class="clock-base"></div>
+  </div>
+
+  <p class="countdown-status" id="status">COUNTING DOWN TO REGISTRATION — 20 SEP 2026, 20:00 WIB</p>
+  <a href="{{ "/" | relative_url }}" class="countdown-enter" id="enterBtn">ENTER SITE →</a>
+
+  <noscript>
+    <p class="countdown-status">Enable JavaScript to see the live countdown. Registration: 20 September 2026, 8:00 PM WIB.</p>
+  </noscript>
+
+</div>
+
+<script src="{{ "assets/js/countdown.js" | relative_url }}" defer></script>
+</body>
+</html>

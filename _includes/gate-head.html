@@ -1,0 +1,12 @@
+<script>
+  (function () {
+    try {
+      var target = new Date('2026-09-20T20:00:00+07:00').getTime();
+      if (Date.now() < target) {
+        document.documentElement.classList.add('gate-active');
+      }
+    } catch (e) {}
+  })();
+</script>
+<link rel="stylesheet" href="{{ "/assets/css/countdown.css" | relative_url }}">
+<link rel="stylesheet" href="{{ "/assets/css/countdown-gate.css" | relative_url }}">

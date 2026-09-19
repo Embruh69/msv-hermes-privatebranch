@@ -1,0 +1,76 @@
+/* ====================================================================
+   Retro crew page :: A.D.A.M. easter egg
+   ---------------------------------------------------------------
+   Click A.D.A.M.'s entry on /retro/crew.html three times to trigger
+   a brief screen glitch (via mgGlitch.js) and reveal a hidden,
+   unlisted crew entry. A little foreshadowing.
+
+   Scoped to retro/crew.html only; not linked anywhere else.
+   Pair with: assets/js/mgGlitch.min.js, assets/js/adam-easter-egg.js
+   ==================================================================== */
+
+/* ---------- Discord-handle line under each crew name (synced from
+   the modern crew.html, which has these but the retro page didn't) ---------- */
+
+.crew-table .handle {
+  display: block;
+  font-family: "Courier New", monospace;
+  font-size: 10px;
+  color: #66ff66;
+  margin: 2px 0 4px;
+}
+
+/* ---------- full-screen glitch overlay, driven by mgGlitch.js ---------- */
+
+#glitch-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0px, rgba(255, 255, 255, 0.08) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, #ff0033 0%, #00ffea 33%, #ffee00 66%, #ff0033 100%);
+  background-size: 100% 100%, 6px 100%;
+  opacity: 0.9;
+}
+
+/* mgGlitch clones #glitch-overlay into extra layers (.back / .front-2
+   / .front-3, all full clones) and adds .front-1 onto the original
+   element itself, then animates each layer's clip-rect + offset.
+   Every layer inherits the full-screen styling above via the shared
+   id; we just tint two of them here to fake an RGB split. */
+#glitch-overlay.front-1 { filter: hue-rotate(120deg) saturate(4); mix-blend-mode: screen; }
+#glitch-overlay.front-2 { filter: hue-rotate(-120deg) saturate(4); mix-blend-mode: screen; }
+
+/* ---------- hidden 7th crew entry, revealed after the glitch ---------- */
+
+.hidden-crew { display: none; }
+
+.mystery-cell {
+  text-align: center;
+  border: 2px outset #660000 !important;
+  background: #110000 !important;
+}
+
+.mystery-portrait {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 8px;
+  background: repeating-linear-gradient(45deg, #000 0, #000 4px, #330000 4px, #330000 8px);
+  border: 2px inset #660000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff4444;
+  font-family: "Courier New", monospace;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.mystery-cell b { color: #ff4444; }
+.mystery-cell .role { color: #ff8888; }
+.mystery-cell p { color: #ffaaaa; max-width: 480px; margin: 6px auto 0; }
+
+@keyframes mystery-fade-in { from { opacity: 0; } to { opacity: 1; } }
+.mystery-reveal { animation: mystery-fade-in 0.8s ease; }

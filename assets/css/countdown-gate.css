@@ -1,0 +1,52 @@
+/* ============================================================
+   PASSENGER :: SITE GATE
+   ------------------------------------------------------------
+   Full-site takeover: shows the departure countdown (reusing
+   the digit/clock visuals from countdown.css) on top of every
+   page until the target date/time, then reveals the real page
+   underneath — no reload required.
+
+   Requires #gate-overlay to be a direct child of <body> (see
+   _includes/gate-overlay.html) and the `gate-active` class to be
+   set on <html> (see _includes/gate-head.html).
+
+   Pairs with: assets/js/countdown-gate.js,
+               _includes/gate-head.html, _includes/gate-overlay.html
+   ============================================================ */
+
+#gate-overlay {
+  display: none;
+}
+
+html.gate-active {
+  overflow: hidden;
+}
+
+/* Hide every other direct child of <body> — header, page content,
+   footer, the win98 toggle button, trailing <script> tags — while
+   the gate is up. #gate-overlay is exempted. */
+html.gate-active body > *:not(#gate-overlay) {
+  display: none !important;
+}
+
+html.gate-active #gate-overlay {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  overflow-y: auto;
+}
+
+#gate-overlay .countdown-page {
+  width: 100%;
+}
+
+#gate-overlay .countdown-enter {
+  border: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #gate-overlay .countdown-enter { transition: none; }
+}

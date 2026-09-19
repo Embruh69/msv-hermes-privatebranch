@@ -1,0 +1,363 @@
+/* ====================================================================
+   Windows 98 / Internet Explorer retro overlay
+   ---------------------------------------------------------------
+   Wraps the existing page in a Win98 desktop + IE browser chrome.
+   Fully inert until html.win98-active is toggled by win98-overlay.js,
+   so it has zero effect on normal layout, SEO, or accessibility
+   when the toggle hasn't been used.
+
+   Requires: assets/images/win98-desktop.png (the desktop backdrop)
+   Pair with: assets/js/win98-overlay.js
+   ==================================================================== */
+
+:root {
+  --win98-face: #c0c0c0;
+  --win98-face-light: #dfdfdf;
+  --win98-face-lighter: #ffffff;
+  --win98-face-dark: #808080;
+  --win98-face-darker: #000000;
+  --win98-blue-start: #000080;
+  --win98-blue-end: #1084d0;
+  --win98-font: Tahoma, "Segoe UI", Geneva, "MS Sans Serif", Arial, sans-serif;
+}
+
+/* ---------- toggle button, always visible, always on top ---------- */
+
+#win98-toggle {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  z-index: 100000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(18, 20, 28, 0.72);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-family: var(--win98-font);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#win98-toggle:hover { background: rgba(18, 20, 28, 0.92); transform: translateY(-1px); }
+#win98-toggle:active { transform: translateY(0); }
+#win98-toggle .win98-toggle-icon { font-size: 1rem; line-height: 1; }
+
+/* ---------- structural wrappers: inert (no box) until active ---------- */
+
+#win98-desktop,
+#win98-frame,
+.win98-content-area,
+#win98-real-content {
+  display: contents;
+}
+
+#win98-retro-frame { display: none; }
+
+.win98-chrome { display: none; }
+
+/* ==================================================================
+   ACTIVE (retro) mode
+   ================================================================== */
+
+html.win98-active body {
+  overflow: hidden;
+  height: 100vh;
+}
+
+html.win98-active #win98-desktop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  padding: clamp(10px, 4vh, 48px) clamp(10px, 4vw, 48px);
+  background: #008080 url("../images/win98-desktop.png") center top / cover no-repeat;
+}
+
+html.win98-active #win98-frame {
+  display: flex;
+  flex-direction: column;
+  width: min(1180px, 100%);
+  height: 100%;
+  max-height: 800px;
+  background: var(--win98-face);
+  font-family: var(--win98-font);
+  color: #000;
+  box-shadow:
+    inset -1px -1px 0 var(--win98-face-darker),
+    inset 1px 1px 0 var(--win98-face-lighter),
+    inset -2px -2px 0 var(--win98-face-dark),
+    inset 2px 2px 0 var(--win98-face-light),
+    5px 5px 18px rgba(0, 0, 0, 0.5);
+}
+
+html.win98-active .win98-chrome { display: flex; }
+
+/* ---------- title bar ---------- */
+
+.win98-titlebar {
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 3px 3px 5px;
+  background: linear-gradient(90deg, var(--win98-blue-start), var(--win98-blue-end));
+  color: #fff;
+  flex: none;
+}
+
+.win98-titlebar-left { display: flex; align-items: center; gap: 6px; min-width: 0; }
+
+.win98-ie-icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #7fd8ff, #0058c9 70%);
+  color: #fff;
+  font: italic 700 11px/16px Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+
+.win98-title-text {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win98-titlebar-btns { display: flex; gap: 2px; flex: none; }
+
+.win98-tb-btn {
+  width: 18px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--win98-face);
+  color: #000;
+  font-size: 10px;
+  line-height: 1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  box-shadow:
+    inset -1px -1px 0 var(--win98-face-darker),
+    inset 1px 1px 0 var(--win98-face-lighter);
+}
+
+.win98-tb-btn:active {
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-darker),
+    inset -1px -1px 0 var(--win98-face-lighter);
+}
+
+/* ---------- menu bar ---------- */
+
+.win98-menubar {
+  flex: none;
+  gap: 14px;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--win98-face-dark);
+  box-shadow: 0 1px 0 var(--win98-face-lighter);
+}
+
+.win98-menubar span { cursor: default; padding: 1px 3px; }
+.win98-menubar span:hover { background: var(--win98-blue-end); color: #fff; }
+
+/* ---------- toolbar ---------- */
+
+.win98-toolbar {
+  flex: none;
+  align-items: stretch;
+  gap: 1px;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--win98-face-dark);
+  box-shadow: 0 1px 0 var(--win98-face-lighter);
+}
+
+.win98-tool-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  min-width: 54px;
+  padding: 3px 6px;
+  background: transparent;
+  border: none;
+  font-family: var(--win98-font);
+  font-size: 10px;
+  color: #000;
+  cursor: pointer;
+}
+
+.win98-tool-btn .win98-tool-icon { font-size: 15px; line-height: 1; }
+
+.win98-tool-btn:hover {
+  box-shadow:
+    inset -1px -1px 0 var(--win98-face-darker),
+    inset 1px 1px 0 var(--win98-face-lighter);
+}
+
+.win98-tool-btn:active {
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-darker),
+    inset -1px -1px 0 var(--win98-face-lighter);
+}
+
+.win98-tool-sep {
+  width: 1px;
+  margin: 2px 5px;
+  background: var(--win98-face-dark);
+  box-shadow: 1px 0 0 var(--win98-face-lighter);
+}
+
+/* ---------- address bar ---------- */
+
+.win98-addressbar {
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px 7px;
+  font-size: 12px;
+}
+
+.win98-address-label { flex: none; }
+
+.win98-address-field {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  background: #fff;
+  padding: 2px 6px;
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-darker),
+    inset -1px -1px 0 var(--win98-face-lighter),
+    inset 2px 2px 0 var(--win98-face-dark);
+}
+
+.win98-address-icon { flex: none; font-size: 12px; }
+
+.win98-address-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--win98-font);
+  font-size: 12px;
+  color: #000;
+}
+
+.win98-address-dropdown {
+  flex: none;
+  width: 16px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--win98-face);
+  font-size: 8px;
+  box-shadow:
+    inset -1px -1px 0 var(--win98-face-darker),
+    inset 1px 1px 0 var(--win98-face-lighter);
+}
+
+.win98-links-label {
+  flex: none;
+  color: var(--win98-face-dark);
+  padding-left: 8px;
+  border-left: 1px solid var(--win98-face-dark);
+  box-shadow: -1px 0 0 var(--win98-face-lighter);
+}
+
+/* ---------- content area: the retro site renders here via an iframe ---------- */
+
+html.win98-active .win98-content-area {
+  display: block;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+  margin: 4px 5px 0;
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-darker),
+    inset -1px -1px 0 var(--win98-face-lighter),
+    inset 2px 2px 0 var(--win98-face-dark);
+}
+
+html.win98-active #win98-real-content { display: none; }
+
+html.win98-active #win98-retro-frame {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #fff;
+}
+
+/* ---------- status bar ---------- */
+
+.win98-statusbar {
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 6px;
+  margin: 4px 5px 5px;
+  font-size: 11px;
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-dark),
+    inset -1px -1px 0 var(--win98-face-lighter);
+}
+
+.win98-status-text { flex: 1 1 auto; padding-left: 4px; }
+
+.win98-status-cell {
+  flex: none;
+  width: 54px;
+  height: 14px;
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-dark),
+    inset -1px -1px 0 var(--win98-face-lighter);
+}
+
+.win98-status-zone {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 1px 6px;
+  box-shadow:
+    inset 1px 1px 0 var(--win98-face-dark),
+    inset -1px -1px 0 var(--win98-face-lighter);
+}
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 720px) {
+  html.win98-active #win98-desktop { padding: 6px; }
+  .win98-tool-btn { min-width: 42px; font-size: 9px; }
+  .win98-tool-btn .win98-tool-icon { font-size: 13px; }
+  .win98-status-cell { display: none; }
+  .win98-title-text { max-width: 38vw; }
+  .win98-links-label { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #win98-toggle { transition: none; }
+}

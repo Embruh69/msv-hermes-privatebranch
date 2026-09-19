@@ -1,0 +1,22 @@
+# site settings
+title: MSV Hermes
+baseurl: ""
+url: "https://msv-hermes.net"
+description: "Earth has given you everything it's going to. Proxima hasn't even started. Board the Hermes for a one-way voyage to a world worth waking up for."
+image: /assets/images/hero-bg.png
+
+# homepage tiles
+tiles-source: pages # accepts "posts" or "pages"
+tiles-count: 6
+
+# build settings
+markdown: kramdown
+
+sass:
+  style: compressed
+
+exclude:
+- "*.gemspec"
+- LICENSE.md
+- CONTRIBUTING.md
+- README.md 

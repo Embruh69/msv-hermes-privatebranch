@@ -1,0 +1,250 @@
+/* ============================================================
+   PASSENGER :: RETRO EDITION
+   ------------------------------------------------------------
+   A deliberately over-the-top recreation of a late-1990s
+   website: table layout, system fonts, tiled starfield,
+   marquees, hit counters, webring badges — the works.
+
+   This stylesheet is intentionally NOT related to passenger.css
+   or win98-overlay.css. It's a completely separate visual system
+   that renders inside the fake IE window's content area via an
+   iframe, so it can't clash with (or be overridden by) the
+   modern site's styles.
+   ============================================================ */
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 18px 0 40px;
+  background-color: #000033;
+  background-image:
+    radial-gradient(1px 1px at 12px 14px, #ffffff 60%, transparent 60%),
+    radial-gradient(1px 1px at 54px 70px, #ffffff 60%, transparent 60%),
+    radial-gradient(1px 1px at 96px 24px, #ffffff 60%, transparent 60%),
+    radial-gradient(1px 1px at 140px 96px, #ffffff 60%, transparent 60%),
+    radial-gradient(1px 1px at 170px 48px, #ffffff 60%, transparent 60%),
+    radial-gradient(2px 2px at 30px 110px, #99ccff 70%, transparent 70%);
+  background-repeat: repeat;
+  background-size: 190px 190px;
+  color: #00ff00;
+  font-family: "MS Sans Serif", Geneva, Verdana, Arial, sans-serif;
+  font-size: 14px;
+}
+
+a { color: #00ffff; }
+a:visited { color: #cc66ff; }
+a:hover { color: #ffff00; }
+
+hr {
+  border: none;
+  height: 3px;
+  background: linear-gradient(90deg, #ff0000, #ff9900, #ffff00, #33ff00, #0099ff, #6600ff, #ff0099);
+  margin: 14px 0;
+}
+
+/* ---------- page shell ---------- */
+
+.page {
+  width: 760px;
+  margin: 0 auto;
+  background: #000000;
+  border: 4px ridge #808080;
+}
+
+.banner {
+  background: linear-gradient(180deg, #0000aa, #000033);
+  padding: 16px 12px;
+  text-align: center;
+  border-bottom: 3px double #00ff00;
+}
+
+.banner .kicker {
+  display: block;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: #ffff00;
+  margin-bottom: 6px;
+}
+
+.banner h1 {
+  font-family: "Comic Sans MS", "Chicago", cursive, sans-serif;
+  font-size: 38px;
+  color: #ffff00;
+  text-shadow: 2px 2px 0 #ff0000;
+  margin: 0 0 6px;
+  letter-spacing: 2px;
+}
+
+.banner .tag {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+marquee {
+  display: block;
+  background: #000000;
+  color: #00ff00;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 4px 0;
+  border-top: 1px solid #00ff00;
+  border-bottom: 1px solid #00ff00;
+}
+
+/* ---------- layout table ---------- */
+
+.layout-table { width: 100%; border-collapse: collapse; }
+.layout-table > tbody > tr > td { vertical-align: top; padding: 14px; }
+
+.nav-col {
+  width: 180px;
+  background: #001a00;
+  border-right: 2px solid #00ff00;
+}
+
+.content-col { background: #000000; }
+
+/* ---------- nav box ---------- */
+
+.nav-box { font-family: "Courier New", monospace; }
+.nav-title { color: #ffff00; font-weight: bold; margin: 0 0 6px; letter-spacing: 1px; }
+.nav-list { list-style: none; margin: 0 0 16px; padding: 0; }
+.nav-list li { margin: 0 0 6px; }
+.nav-list a { text-decoration: none; }
+.nav-list a:hover { text-decoration: underline; }
+
+/* ---------- content blocks ---------- */
+
+.content-col h2 {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #ffff00;
+  font-size: 20px;
+  margin: 0 0 4px;
+}
+
+.content-col h3 {
+  font-family: "MS Sans Serif", Geneva, Arial, sans-serif;
+  color: #00ffff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 18px 0 4px;
+}
+
+.content-col p { color: #cccccc; line-height: 1.5; margin: 0 0 10px; }
+
+.info-table { width: 100%; border-collapse: collapse; margin: 10px 0 4px; }
+.info-table td {
+  border: 2px outset #666666;
+  background: #001100;
+  padding: 10px;
+  color: #cccccc;
+  line-height: 1.5;
+}
+
+.blink { animation: retro-blink 1s steps(1) infinite; color: #ff0000; font-weight: bold; }
+@keyframes retro-blink { 50% { opacity: 0; } }
+
+.under-construction {
+  margin: 14px 0;
+  padding: 10px;
+  text-align: center;
+  font-family: "MS Sans Serif", Geneva, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 13px;
+  color: #000000;
+  background: repeating-linear-gradient(45deg, #ffff00, #ffff00 12px, #000000 12px, #000000 24px);
+  border: 3px solid #000000;
+}
+
+.btn-retro {
+  display: inline-block;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #000000;
+  background: #c0c0c0;
+  padding: 10px 22px;
+  text-decoration: none;
+  border-top: 3px solid #ffffff;
+  border-left: 3px solid #ffffff;
+  border-right: 3px solid #404040;
+  border-bottom: 3px solid #404040;
+}
+.btn-retro:hover { background: #d8d8d8; }
+.btn-retro:active {
+  border-top: 3px solid #404040;
+  border-left: 3px solid #404040;
+  border-right: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+}
+
+/* ---------- FAQ list (no JS accordion — this is 1998) ---------- */
+
+.faq-table { width: 100%; border-collapse: collapse; }
+.faq-table td { padding: 8px 4px; border-bottom: 1px dashed #333333; color: #cccccc; }
+.faq-table .q { color: #ffff00; font-weight: bold; }
+
+/* ---------- crew table ---------- */
+
+.crew-table { width: 100%; border-collapse: collapse; }
+.crew-table td {
+  width: 25%;
+  text-align: center;
+  vertical-align: top;
+  padding: 8px;
+  border: 2px outset #666666;
+  background: #001100;
+}
+.crew-portrait {
+  width: 72px; height: 72px;
+  margin: 0 auto 8px;
+  background: #003300;
+  border: 2px inset #666666;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  overflow: hidden;
+}
+.crew-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.crew-table .role { color: #00ffff; font-size: 11px; display: block; margin: 2px 0 6px; }
+.crew-table p { color: #cccccc; font-size: 12px; line-height: 1.4; margin: 0; }
+
+/* ---------- footer ---------- */
+
+.retro-footer {
+  padding: 14px;
+  font-family: "Courier New", monospace;
+  font-size: 11px;
+  color: #999999;
+  text-align: center;
+}
+
+.badge-row { margin: 10px 0; }
+.badge {
+  display: inline-block;
+  border: 1px solid #666666;
+  background: #111111;
+  color: #00ff00;
+  padding: 4px 8px;
+  margin: 2px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+
+.counter {
+  margin: 10px 0;
+  color: #ffffff;
+}
+.odometer {
+  display: inline-block;
+  background: #000000;
+  color: #ff0000;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 2px 6px;
+  border: 2px inset #666666;
+}

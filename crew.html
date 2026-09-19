@@ -1,0 +1,89 @@
+---
+layout: passenger
+title: Our Crew
+description: "Meet the crew of the MSV Hermes: the people who stand watch over the voyage and every colonist getting you to Proxima."
+image: /assets/images/card-crew.png
+---
+
+<section class="detail-hero">
+  <div class="wrap">
+    <img class="detail-banner" src="{{ "assets/images/card-crew.png" | relative_url }}" alt="">
+
+    <div class="detail-row">
+      <div class="detail-col-left detail-col-left--wide">
+        <h2 class="detail-title">OUR CREW <img src="{{ "assets/images/caret-double.svg" | relative_url }}" alt=""></h2>
+        <p class="detail-tag">PEOPLE BEHIND YOUR VOYAGE</p>
+        <p style="font-family:'Barlow',sans-serif; font-weight:400; line-height:1.65; color:rgba(255,255,255,0.88); margin:0;">People that stand watch over the rest of the Hermes' voyage, and over every colonist who comes aboard. Meet the crew getting you to Proxima.</p>
+      </div>
+    </div>
+    <div class="crew-grid-v2" style="margin-top:56px;">
+      <div class="crew-card-v2">
+        <div class="portrait"><img src="{{ "assets/images/cpted-profile.png" | relative_url }}" alt="Sir Ed Sheeran"></div>
+        <h3>Sir Ed Sheeran <span class="discord-sep">|</span> <span class="discord-handle">@secrethandler</span></h3>
+        <span class="role">Captain, MSV Hermes</span>
+        <details class="crew-bio" open>
+          <summary>Background</summary>
+          <p>Before Hermes, Ed Sheeran spent 10 years as a captain and 5 years as a co-captain, primarily on Boeing-type. Building a reputation for a great pilot with minimum of failure, and always found a way out at situation under pressure.</p>
+          <p>At his thirty fresh out of the program 5 years before deployment beyond the earth, he was knighted by the Queen. Recognition not for years of service alone, but for being the one chosen to go first.</p>
+        </details>
+      </div>
+      <div class="crew-card-v2">
+        <div class="portrait portrait--harry"><img src="{{ "assets/images/harry-new.png" | relative_url }}" alt="Harry Styles"></div>
+        <h3>Harry Styles <span class="discord-sep">|</span> <span class="discord-handle">@ember_ce</span></h3>
+        <span class="role">First Mate</span>
+        <details class="crew-bio" open>
+          <summary>Background</summary>
+          <p>Harry spent close to a decade flying search-and-rescue before PRS recruited him, with more emergency extractions logged than anyone else in his squadron. He runs the bridge without raising his voice, and colonists who cross paths with him will find that same calm holds even when nothing else does.</p>
+        </details>
+      </div>
+      <div class="crew-card-v2">
+        <div class="portrait portrait--louis"><img src="{{ "assets/images/louis-new.png" | relative_url }}" alt="Louis Tomlinson"></div>
+        <h3>Louis Tomlinson <span class="discord-sep">|</span> <span class="discord-handle">@hiuputihbesar</span></h3>
+        <span class="role">Quartermaster</span>
+        <details class="crew-bio" open>
+          <summary>Background</summary>
+          <p>Louis came up through logistics and freight work, not a command track. The kind of job where a miscount means someone doesn't eat. That instinct carried straight into his selection for Hermes. When the program needed a Quartermaster who could keep a scarce, closed system balanced for years without slipping, left Louis the only choice for the position.</p>
+        </details>
+      </div>
+      <div class="crew-card-v2">
+        <div class="portrait portrait--niall"><img src="{{ "assets/images/niall-profile.png" | relative_url }}" alt="Niall Horan"></div>
+        <h3>Niall Horan <span class="discord-sep">|</span> <span class="discord-handle">@lycorice_</span></h3>
+        <span class="role">Ship's Surgeon</span>
+        <details class="crew-bio" open>
+          <summary>Background</summary>
+          <p>Niall trained as a trauma surgeon before running the med bay on a low-orbit mining platform, the kind of post where you learn to work with whatever you've got. Every colonist who steps off the Chrono-Bay Wings passes through his hands first, and PRS cleared him for long-haul duty precisely because nothing about zero-margin conditions rattles him.</p>
+        </details>
+      </div>
+      <div class="crew-card-v2">
+        <div class="portrait"><img src="{{ "assets/images/zayn-profile.png" | relative_url }}" alt="Zayn Malik"></div>
+        <h3>Zayn Malik <span class="discord-sep">|</span> <span class="discord-handle">@krolonks</span></h3>
+        <span class="role">Purser</span>
+        <details class="crew-bio" open>
+          <summary>Background</summary>
+          <p>Zayn built his career matching people to roles nobody thought they'd want, first in disaster-zone resettlement and then across three PRS colonial waves before Hermes. He reads an application the way most people read a face: if your file crosses his desk, you've already made it further than most.</p>
+        </details>
+      </div>
+      <div class="crew-card-v2">
+        <div class="portrait"><img src="{{ "assets/images/hal-profile.jpg" | relative_url }}" alt="A.D.A.M."></div>
+        <h3>A.D.A.M. <span class="discord-sep">|</span> <span class="discord-handle">@dewantr</span></h3>
+        <span class="role">Caretaker</span>
+        <details class="crew-bio" open>
+          <summary>Background</summary>
+          <p>A.D.A.M. 7000 is the shipboard intelligence running quietly behind every system on the Hermes, from the Chrono-Bay Wings to the Medical Bay. Built for a single job, keeping every sleeping colonist safe for the length of the crossing, and it hasn't lost one yet.</p>
+        </details>
+      </div>
+    </div>
+    <script>
+      if (window.matchMedia('(max-width: 540px)').matches) {
+        document.querySelectorAll('.crew-bio[open]').forEach(function (el) {
+          el.removeAttribute('open');
+        });
+      }
+    </script>
+
+    <div class="detail-nav-row">
+      <a href="{{ "/mission.html" | relative_url }}" class="nav-prev"><img src="{{ "assets/images/caret-double.svg" | relative_url }}" alt="">OUR MISSION</a>
+      <a href="{{ "/player-guide.html" | relative_url }}" class="nav-next">OPEN ENROLLMENT<img src="{{ "assets/images/caret-double.svg" | relative_url }}" alt=""></a>
+    </div>
+  </div>
+</section>
